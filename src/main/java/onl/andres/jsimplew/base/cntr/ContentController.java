@@ -34,7 +34,7 @@ public abstract class ContentController implements BaseController {
     this.request = request;
     HttpHeaders headers = new DefaultHttpHeaders();
     headers.add(HttpUtils.CONTENT_TYPE, HttpUtils.HTML_CONTENT_TYPE);
-    byte[] template = HttpUtils.getCpContent("/tmpl" + path);
+    byte[] template = HttpUtils.getCurrentDirContent(path);
     StringWriter writer = new StringWriter();
     Velocity.evaluate(getContext(), writer, "", new String(template, StandardCharsets.UTF_8));
     return new Response(headers, writer.toString().getBytes(StandardCharsets.UTF_8));

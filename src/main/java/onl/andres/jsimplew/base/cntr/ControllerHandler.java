@@ -105,7 +105,7 @@ public class ControllerHandler extends SimpleChannelInboundHandler<Object> {
   private void writeError(ChannelHandlerContext context, HttpResponseStatus status) {
     try {
       FullHttpResponse httpResponse = new DefaultFullHttpResponse(HTTP_1_1, status,
-          Unpooled.copiedBuffer(HttpUtils.getCpContent("/error/" + status.code() + ".html")));
+          Unpooled.copiedBuffer(HttpUtils.getClasspathContent("/error/" + status.code() + ".html")));
       context.write(httpResponse);
       context.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
     } catch (Exception e) {

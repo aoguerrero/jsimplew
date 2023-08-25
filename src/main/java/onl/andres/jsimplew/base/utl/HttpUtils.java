@@ -3,6 +3,8 @@ package onl.andres.jsimplew.base.utl;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,8 +16,12 @@ public class HttpUtils {
   public static final String JSON_CONTENT_TYPE = "application/json; charset=utf-8";
   public static final String HTML_CONTENT_TYPE = "text/html; charset=utf-8";
 
-  public static byte[] getCpContent(String path) throws IOException {
+  public static byte[] getClasspathContent(String path) throws IOException {
     return HttpUtils.class.getResourceAsStream(path).readAllBytes();
+  }
+
+  public static byte[] getCurrentDirContent(String path) throws IOException {
+    return Files.readAllBytes(Path.of(System.getProperty("user.dir"), "tmpl", path));
   }
 
   public static Map<String, String> bodyToForm(byte[] body) {

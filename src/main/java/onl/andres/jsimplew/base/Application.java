@@ -38,7 +38,8 @@ public class Application {
             }
           });
       ChannelFuture channelFuture = serverBootstrap.bind(port).sync();
-      logger.info("Application listening on port: " + port);
+      logger.info("Application listening on port: {}", port);
+      logger.info("Current directory: {}", System.getProperty("user.dir"));
       logger.info("Endpoint paths:");
       for (String path : controllers.keySet()) {
         logger.info(path);
