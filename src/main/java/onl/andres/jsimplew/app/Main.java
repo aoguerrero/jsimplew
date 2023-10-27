@@ -9,7 +9,6 @@ import onl.andres.jsimplew.app.cntr.HelloWorldCntr;
 import onl.andres.jsimplew.app.cntr.JsonCntr;
 import onl.andres.jsimplew.base.Application;
 import onl.andres.jsimplew.base.cntr.BaseController;
-import onl.andres.jsimplew.base.utl.ConnectionPool;
 
 public class Main {
 

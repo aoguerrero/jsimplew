@@ -5,10 +5,12 @@ import org.slf4j.LoggerFactory;
 
 public class InternalServerException extends ServiceException {
 
-  private static Logger logger = LoggerFactory.getLogger(InternalServerException.class);
+	private static final long serialVersionUID = 2937088215949192773L;
 
-  public InternalServerException(Throwable cause) {
-    super(cause);
-    logger.error("original-cause: ", cause);
-  }
+	private static Logger logger = LoggerFactory.getLogger(InternalServerException.class);
+
+	public InternalServerException(Throwable cause) {
+		super(cause);
+		logger.error("original-cause: ", cause);
+	}
 }
