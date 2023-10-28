@@ -1,0 +1,11 @@
+<html>
+<head><title>Log List</title></head>
+<body>
+#foreach($log in $logs)
+	<p>$log.title</p>
+	<p>$log.timestamp</p>
+	<p>$log.body</p>
+	<br/>
+#end
+</body>
+</html>

@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
+import org.h2.jdbcx.JdbcConnectionPool;
 
 import io.netty.handler.codec.http.DefaultHttpHeaders;
 import io.netty.handler.codec.http.HttpHeaders;
@@ -34,19 +35,19 @@ public abstract class ContentController implements BaseController {
     this.request = request;
     HttpHeaders headers = new DefaultHttpHeaders();
     headers.add(HttpUtils.CONTENT_TYPE, HttpUtils.HTML_CONTENT_TYPE);
-    byte[] template = HttpUtils.getCurrentDirContent(path);
+    byte[] template = HttpUtils.getClasspathContent("/content/"+path);
     StringWriter writer = new StringWriter();
     Velocity.evaluate(getContext(), writer, "", new String(template, StandardCharsets.UTF_8));
     return new Response(headers, writer.toString().getBytes(StandardCharsets.UTF_8));
   }
 
-  public abstract VelocityContext getContext();
+  public abstract VelocityContext getContext() throws ServiceException, Exception;
 
   public HttpRequest getRequest() {
     return request;
   }
 
-  protected ConnectionPool getPool() {
-    return pool;
+  protected JdbcConnectionPool getPool() {
+    return pool.getPool();
   }
 }

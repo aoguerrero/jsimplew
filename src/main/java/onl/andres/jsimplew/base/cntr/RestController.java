@@ -2,6 +2,8 @@ package onl.andres.jsimplew.base.cntr;
 
 import java.nio.charset.StandardCharsets;
 
+import org.h2.jdbcx.JdbcConnectionPool;
+
 import io.netty.handler.codec.http.DefaultHttpHeaders;
 import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.codec.http.HttpRequest;
@@ -36,7 +38,7 @@ public abstract class RestController implements BaseController {
     return request;
   }
 
-  protected ConnectionPool getPool() {
-    return pool;
+  protected JdbcConnectionPool getPool() {
+    return pool.getPool();
   }
 }
